@@ -1,1 +1,1 @@
-The implementation is expected to prevent duplicate charges for repeated keys. A required mapped test evidence path is intentionally absent from this revision.
+POST /charges requires an idempotency key. Repeating the same key and request returns the saved response without creating another charge. Reusing the key with a different request returns an idempotency conflict.

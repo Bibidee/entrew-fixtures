@@ -1,9 +1,6 @@
 def post_charge(key, payload, ledger):
     if key in ledger:
-        saved_payload, result = ledger[key]
-        if saved_payload != payload:
-            raise IdempotencyConflict()
-        return result
+        return ledger[key]
     result = create_charge(payload)
-    ledger[key] = (payload, result)
+    ledger[key] = result
     return result

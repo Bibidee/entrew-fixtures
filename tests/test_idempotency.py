@@ -1,4 +1,3 @@
-def test_duplicate_charge_observed_for_same_key():
-    post_charge('fresh-negative-key', {'cents': 500}, {})
-    post_charge('fresh-negative-key', {'cents': 500}, {})
-    assert charge_count() == 2
+def test_same_key_is_deduplicated():
+    first = post_charge('fresh-corrected-r1-key', payload, ledger)
+    assert post_charge('fresh-corrected-r1-key', payload, ledger) == first
